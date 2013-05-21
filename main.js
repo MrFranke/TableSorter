@@ -5,7 +5,7 @@ $.fn.DndTable = function( options ) {
     var settings = $.extend({
         CSS_CLASS: 'js-dnd',
         drop: null,             // Элемент в который можно перетащить строку
-        draggableClasses: '',   // Классы, для таблицы, которая создаетс для анимации перетаскивания элемента
+        draggableClasses: null,   // Классы, для таблицы, которая создаетс для анимации перетаскивания элемента
         sort: true              // Вклюение/отключение сортировки в $drop таблице
     }, options);
     
@@ -29,6 +29,10 @@ $.fn.DndTable = function( options ) {
 
         function updateVars () {
             $drop = settings.drop;
+
+            if ( !settings.draggableClasses ) {
+                settings.draggableClasses = $drop.attr('class');
+            }
         }
 
         /**
