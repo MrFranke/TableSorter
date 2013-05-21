@@ -1,0 +1,9 @@
+{
+    "name": "dnd-table"
+  , "description": "Drag'n'Drop table"
+  , "version": "1.0.0"
+  , "keywords": ["table", "dnd", "sort"]
+  , "author": {
+        "name": "Moskalev Mikhail"
+    }
+}
