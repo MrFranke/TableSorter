@@ -8,11 +8,7 @@ $.fn.DndTable = function( options ) {
         draggableClasses: null,   // Классы, для таблицы, которая создаетс для анимации перетаскивания элемента
         errorClasses: null,       // Эти классы будут навещиваться на перетаскиваемый элемент во время ошибки
         sort: true,               // Вклюение/отключение сортировки в $drop таблице
-        dropSize: Infinity,       // Максимальный размер $drop таблицы
-
-        onstartdrag: null,        // Вызывается при yfxfkt gthtnfcrbdfybz
-        ondrag: null,             // Вызывается во время перетаскивания
-        ondrop: null,             // Вызывается когда дропаем элемент
+        dropSize: Infinity        // Максимальный размер $drop таблицы
     }, options);
     
     var DndTable = function ( $drag ) {
@@ -65,12 +61,6 @@ $.fn.DndTable = function( options ) {
               , offsetY = e.offsetY || e.clientY - $(e.target).offset().top;
               ;
 
-            if ( onstartdrag ) {onstartdrag();}
-
-            // Не даем выделять текст при перетаскивании
-            document.body.style.webkitUserSelect = 'none';
-            document.body.style.MozUserSelect = 'none';
-
             role = $choise.parents('table').data('role');
             
             // Делаем перемещаемый элемент прозрачным
@@ -93,7 +83,9 @@ $.fn.DndTable = function( options ) {
             if ( $target !== $choise ) {
                 offsetX += $target.offset().left;
             }
-
+            
+            offsetX -= $target.parents('table').offset().left;
+            
             $clone.css({
                 left: e.pageX - offsetX,
                 top: e.pageY - offsetY
@@ -111,14 +103,13 @@ $.fn.DndTable = function( options ) {
                     returnEl();
                 }
 
-                if (ondrop) {ondrop();}
-
                 e.preventDefault();
                 return false;
             });
 
             // Перемещаем элемент при движении мышки
             $(document).bind('mousemove.DndTable', function (e){
+                $('.dragndrop').css({cursor: 'default'});
 
                 $clone.css({
                     left: e.pageX - offsetX,
@@ -131,8 +122,6 @@ $.fn.DndTable = function( options ) {
                     var pos = getPositionDropZone(e.pageX, e.pageY);
                     dropFantom(pos);
                 }
-
-                if (ondrag) {ondrag();}
 
                 e.preventDefault();
                 return false;
