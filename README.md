@@ -18,3 +18,6 @@ $elements.filter('[data-role="drag"]').DndTable({
   sort: true              // Вклюение/отключение сортировки в $drop таблице
 }
 ```
+
+TODO:
+- Многострочное выделение через shift и ctrl
