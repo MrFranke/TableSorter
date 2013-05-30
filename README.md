@@ -21,3 +21,4 @@ $elements.filter('[data-role="drag"]').DndTable({
 
 TODO:
 - Многострочное выделение через shift и ctrl
+- Пофиксить баг с несколькими таблицами на странице
