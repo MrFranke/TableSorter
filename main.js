@@ -37,6 +37,11 @@ $.fn.DndTable = function( options ) {
         function updateVars () {
             $drop = settings.drop;
 
+            // Если не передали drop таблицу, то находим ее по data атребутам
+            if ( !$drop ) {
+                $drop = $drag.parents('.'+settings.CSS_CLASS).find('[data-role="drop"]');
+            }
+
             // Настройки через data-* атребуты
             settings.dropSize = $drop.data('size')? $drop.data('size') : settings.dropSize;
             settings.sort = $drop.data('sort')? $drop.data('sort') : settings.sort;
