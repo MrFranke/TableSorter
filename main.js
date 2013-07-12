@@ -65,6 +65,9 @@ $.fn.DndTable = function( options ) {
               , offsetX = e.offsetX || e.clientX - $(e.target).offset().left
               , offsetY = e.offsetY || e.clientY - $(e.target).offset().top;
               ;
+              
+            document.body.style.webkitUserSelect = 'none';
+            document.body.style.MozUserSelect = 'none';
 
             role = $choise.parents('table').data('role');
             
